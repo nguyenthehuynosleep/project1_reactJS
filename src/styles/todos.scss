@@ -1,0 +1,16 @@
+
+.container {
+    .container_child {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+    }
+    .icon_multiply {
+        width: 15px;
+        height: 15px;
+        padding: 5px;
+        margin-left: 15px;
+        // margin-top: 12px;
+    }
+}

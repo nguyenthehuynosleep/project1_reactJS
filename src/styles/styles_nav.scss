@@ -1,0 +1,19 @@
+
+.top_nav {
+    width: auto;
+    height: 50px;
+    background-color: azure;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    .link_nav {
+        background-color: aquamarine;
+        font-size: 10px;
+        width: 40px;
+        height: auto;
+        border: 1px solid skyblue;
+        border-radius: 5px;
+        padding: 5px;
+        cursor: pointer;
+    }
+}
