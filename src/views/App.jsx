@@ -1,32 +1,60 @@
 import React from 'react';
-import { useState } from 'react';
-import './App.scss'
-import Myconponents from '../components/Myconponents'
-function App() {
+import { useState, useEffect } from 'react';
+import './App.scss';
+import Myconponents from '../components/Myconponents';
+import Nav from '../components/nav';
+import Todo from '../components/todo';
 
-  let [name, setName] = useState('Huy')
-  let [adress, setAdress] = useState('Hanoi')
-  const handleEventClick = () => {
-    setName(name)
-    setAdress(adress)
+function App() {
+  const [name, setName] = useState('Huy');
+  const [address, setAddress] = useState('');
+  const [todos, setTodos] = useState([
+    { id: '1', name: 'todos1' },
+    { id: '2', name: 'todos2' },
+    { id: '3', name: 'todos3' },
+  ]);
+  useEffect(() => {
+    console.log('useEffect run');
+  })
+  const handleEventClick = (event) => {
+    if (!address) {
+      alert('Vui lòng nhập!');
+      return;
+    }
+    let newTodo = { id: Math.floor(Math.random() * 1000) +1, name: address };
+    setTodos([...todos, newTodo]);
+    setAddress(''); // Clear the input after adding a new todo
+  };
+
+  const handleOnchangeInput = (event) => {
+    const address1 = event.target.value
+    setAddress(address1);
+  };
+  const deleteDataTodos = (id) => {
+    let curentDataTodos = todos
+    curentDataTodos = curentDataTodos.filter(item => item.id !== id)
+    setTodos(curentDataTodos)
   }
-  const handleOnchangeInput = () => {
-    adress = event.target.value
-    console.log(adress)
-  }
-  //re-render the component
+  // re-render the component
   return (
     <>
-      {/* {JSON.stringify(text)} */}
+      <Nav></Nav>
       <p>My name is: {name}</p>
-      <p>My adress is: {adress}</p>
-
-      <input type="text"  onChange={(event) => handleOnchangeInput(event)}/>
-      <div className="div_Button">
-        <button className='Button' onClick={(event => handleEventClick(event))}>Click me</button>
+      <p>Who love me: {address}</p>
+      <Todo
+        todos={todos}
+        name={'Thảo xinh đẹp'}
+        deleteDataTodos = {deleteDataTodos}
+      />
+      <input type='text' value={address} onChange={(event) => handleOnchangeInput(event)} />
+      <div className='div_Button'>
+        <button className='Button' onClick={(event) => handleEventClick(event)}>
+          Click me
+        </button>
       </div>
       <Myconponents></Myconponents>
-    </> 
-  )
+    </>
+  );
 }
-export default App
+
+export default App;
