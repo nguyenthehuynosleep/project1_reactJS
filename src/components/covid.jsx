@@ -25,7 +25,7 @@ const Covid = () => {
       {console.log("dataCovid", dataCovid)}
       <thead>
         <tr>
-          <th>ID1</th>
+          <th>ID3</th>
           <th>Date</th>
           <th>Active</th>
           <th>Deaths</th>
