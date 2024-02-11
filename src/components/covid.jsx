@@ -3,17 +3,21 @@ import axios from "axios";
 
 const Covid = () => {
   const [dataCovid, setDataCovid] = useState([]);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        console.log("get data");
-        let res = await axios.get("http://localhost:3002/posts/testApi");
-        let data = res && res.data ? res.data : [];
-        console.log(res.data);
-        setDataCovid(data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
+      setTimeout(async () => {
+        try {
+          console.log("get data");
+          let res = await axios.get("http://localhost:3002/posts/testApi");
+          let data = res && res.data ? res.data : [];
+          console.log(res.data);
+          setDataCovid(data);
+          setLoading(false);
+        } catch (error) {
+          console.log(error);
+        }
+      }, 3000);
     };
     fetchData();
   }, []);
@@ -25,7 +29,7 @@ const Covid = () => {
       {console.log("dataCovid", dataCovid)}
       <thead>
         <tr>
-          <th>ID</th>
+          <th>ID </th>
           <th>Date</th>
           <th>Active</th>
           <th>Deaths</th>
@@ -33,6 +37,7 @@ const Covid = () => {
       </thead>
       <tbody>
         {dataCovid &&
+          loading === false &&
           dataCovid.length > 0 &&
           dataCovid.map((item) => {
             return (
@@ -44,6 +49,11 @@ const Covid = () => {
               </tr>
             );
           })}
+        {loading === true && (
+          <tr style={{ 'textAlign': 'center' }}>
+            <td colSpan="5">Loading...</td>
+          </tr>
+        )}
       </tbody>
     </table>
   );

@@ -42,19 +42,6 @@ function App() {
       <Nav></Nav>
       <p>My name is: {name}</p>
       <p>Who love me: {address}</p>
-      {/* <Todo
-        todos={todos}
-        name={'Thảo xinh đẹp'}
-        title={'List Todo'}
-        deleteDataTodos = {deleteDataTodos}
-      />
-      <input type='text' value={address} onChange={(event) => handleOnchangeInput(event)} />
-      <div className='div_Button'>
-        <button className='Button' onClick={(event) => handleEventClick(event)}>
-          Click me
-        </button>
-      </div>
-      <Myconponents></Myconponents> */}
       <Covid></Covid>
     </>
   );
